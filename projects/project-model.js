@@ -1,49 +1,34 @@
 const db = require('../data/db-config');
 
 module.exports = {
-    getByProjectId,
-    getByResourceId,
     getProjects,
-    getResources,
+    findById,
     addProject,
     addResource
 };
 
-function getResources() {
-    return db('resources');
+function getProjects() {
+    return db('projects')
 }
 
-function getByResourceId(id) {
-    return db('resources')
-    .where({ id })
-    .first()
-}
-
-function getByProjectId(id) {
+function findById(id) {
     return db('projects')
     .where({ id })
     .first()
+}
+
+function addProject(project) {
+    return db('projects')
+        .insert(project)
+        .then(ids => ({ id: ids[0] }))
 }
 
 function addResource(resource) {
     return db('resources')
         .insert(resource)
-        .then((ids => {
-            return getByResourceId((ids[0]))
-        }));
+        .then(ids => ({ id: ids[0] }))
 }
 
-function getProjects() {
-    return db('projects')
-};
-
-function addProject(project) {
-    return db('projects')
-        .insert(project)
-        .then((ids => {
-            return getByProjectId((ids[0]))
-        }));
-}
 
 function getProjectTasks(projectId) {
     return db('task')
