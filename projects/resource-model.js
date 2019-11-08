@@ -1,10 +1,14 @@
 const db = require('../data/db-config');
 
 module.exports = {
+    findResources,
     getByResourceId,
     addResource
 };
 
+function findResources() {
+    return db('resources');
+  }
 
 function getByResourceId(id) {
     return db('resources')
