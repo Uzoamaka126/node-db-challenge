@@ -21,5 +21,30 @@ router.get('/', (req, res) => {
     // }
 })
 
+ // Add a new task provided that the project id is valid
+// router.post('/:id/task', (req, res) => {
+//      const newProject = {
+//         title: req.body.title,
+//         name: req.body.name,
+//         description: req.body.description,
+//         // boolean:         
+//     };
+
+//     Projects.addTask(req.body)
+//         .then(data => {
+//             console.log(data);
+//             res.status(201).json({
+//                 message: 'New comment successfully added',
+//                 data
+//             });
+//         })
+//         .catch(err => {
+//             // log error to the database
+//             console.log(err);
+//             res.status(500).json({
+//                 message: 'An error occured when adding a new comment',
+//             });
+//         });
+// })
 
 module.exports = router;

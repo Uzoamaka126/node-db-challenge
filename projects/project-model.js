@@ -12,12 +12,13 @@ function getProjects() {
 
 function findById(id) {
     return db('projects')
-    .where({ id })
-    .first()
+    .where({ id: Number(id) });
 }
 
 function addProject(project) {
     return db('projects')
         .insert(project)
-        .then(ids => ({ id: ids[0] }))
+        .then(ids => {            
+            return findById((ids[0]))
+        })
 }

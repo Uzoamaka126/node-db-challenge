@@ -39,11 +39,10 @@ router.get('/:id', (req, res) => {
 router.post('/', validateResourceId, (req, res) => {
     const newResource = {
        name: req.body.name,
-       description: req.body.description,
-       boolean:  Boolean(Number(req.body.boolean))      
+       description: req.body.description
    };
 
-   Resources.addProject(newResource)
+   Resources.addResource(newResource)
        .then(data => {
            console.log(data);
            res.status(201).json({
