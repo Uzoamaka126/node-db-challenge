@@ -10,7 +10,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/projects', projectRouter);
-server.use('/api/projects/:id/tasks', taskRouter);
+server.use('/api/projects', taskRouter);
 server.use('/api/resources', resourceRouter);
 
 server.use('/', (req, res) => {

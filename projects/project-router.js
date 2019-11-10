@@ -16,6 +16,26 @@ router.get('/', (req, res) => {
         })
 })
 
+router.get('/:id', (req, res) => {
+    Projects.findById(req.params.id)
+        .then(project => {
+            console.log(project)
+            if(project) {     
+                res.status(200).json(project);
+            } else {
+                res.status(404).json({
+                    message: 'Post not found'
+                })
+            }
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                message: 'Post could not be retrieved',
+            });
+        });
+});
+
 // Add a new project
 router.post('/', (req, res) => {
     const newProject = {
@@ -41,28 +61,6 @@ router.post('/', (req, res) => {
        });
 })
 
-// // Get all tasks from a particular project
-
-// router.get('/:id/tasks', validateProjectId, (req, res) => {
-//     const { id } = req.params;
-//     Projects.getProjectTasks(id)
-//         .then(singleTask => {
-//             console.log(singleTask)
-//             if (singleTask.length > 0) {
-//                 res.status(200).json(singleTask);
-//             } else {
-//                 res.status(404).json({
-//                     message: 'Post not found'
-//                 });
-//             }   
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             res.status(500).json({
-//                 message: 'Error retrieving tasks',
-//             });
-//         });
-// });
 
 function validateProjectId(req, res, next) {
     const { id } = req.params;
