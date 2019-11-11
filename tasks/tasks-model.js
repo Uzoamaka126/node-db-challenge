@@ -13,11 +13,11 @@ module.exports = {
 //         .where('p.id', id)
 // }
 
-function getProjectTasks(id) {
+function getProjectTasks() {
     return db('task as t')
         .join('projects as p', 't.project_id',  'p.id')
         .select('p.description', 'p.project_name', 't.completed')
-        .where('p.id', id)
+        // .where('p.id', id)
 }
 
 function getTasksByProjectId(projectId) {
